@@ -4,9 +4,88 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Store_Interface"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        mc:Ignorable="d" Background="AliceBlue"
+        Title="Store" Height="350" Width="680.707">
+    <Grid Margin="10,10,2,10">
+        <ListView x:Name="listview_StoreItems" HorizontalAlignment="Left" Height="209" Margin="10,80,0,0" VerticalAlignment="Top" Width="300">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nimetus" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                    <GridViewColumn Header="Hind" DisplayMemberBinding="{Binding Price}" Width="50"/>
+                    <GridViewColumn Header="Kogus" DisplayMemberBinding="{Binding Amount}" Width="50"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Name="AddToShoppingCart" Content="Add to Shopping Cart" HorizontalAlignment="Left" Margin="508,0,0,0" VerticalAlignment="Top" Width="124" Click="btnAddToShoppingCart" BorderBrush="Black">
+            <Button.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="Black" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.OpacityMask>
+        </Button>
+        <ListView x:Name="listview_ShoppingCart" HorizontalAlignment="Left" Height="209" Margin="317,80,0,0" VerticalAlignment="Top" Width="181">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nimetus" DisplayMemberBinding="{Binding Name}" Width="90"/>
+                    <GridViewColumn Header="Hind" DisplayMemberBinding="{Binding Price}" Width="40"/>
+                    <GridViewColumn Header="Kogus" DisplayMemberBinding="{Binding Amount}" Width="40"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Name="btnBuy" Content="Buy Items" HorizontalAlignment="Left" Margin="509,256,0,0" VerticalAlignment="Top" Width="99" Click="btnBuy_Click" Height="33" />
+        <Label Content="Add Item" HorizontalAlignment="Right" Margin="0,91,23,0" VerticalAlignment="Top" Width="129" FontSize="16"/>
+        <TextBox Name="txt_Name" HorizontalAlignment="Left" Height="23" Margin="509,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93" Text="">
+            <TextBox.Style>
+                <Style TargetType="TextBox"  xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    <Style.Resources>
+                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="UniformToFill">
+                            <VisualBrush.Visual>
+                                <Label Content="Product name" Background="White" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBox Name="txt_Price" HorizontalAlignment="Left" Height="23" Margin="509,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" Text="">
+            <TextBox.Style>
+                <Style  xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="{x:Type TextBox}">
+                    <Style.Resources>
+                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="UniformToFill">
+                            <VisualBrush.Visual>
+                                <Label Content="Price" Background="White" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <Button Content="Add Item" HorizontalAlignment="Left" Margin="509,194,0,0" VerticalAlignment="Top" Width="93" Click="btnAddItem"/>
+        <Button Content="Clear Shopping Cart" HorizontalAlignment="Left" Margin="508,30,0,0" VerticalAlignment="Top" Width="124"  Click="btnRemoveItem"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Store" VerticalAlignment="Top" Margin="108,46,0,0" FontSize="22"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shopping Cart" VerticalAlignment="Top" Margin="335,45,0,0" FontSize="22"/>
     </Grid>
 </Window>
